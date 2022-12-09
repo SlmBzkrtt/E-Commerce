@@ -1,0 +1,124 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi - Online</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+</head>
+
+<body>
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a asp-action="Index"
+                   asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="../Anasayfa/images/Logo.png" alt=""></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a asp-action="Index"
+                   asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="../Anasayfa/images/Logo.png" alt=""></a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active">
+                        <a class="btn btn-block" asp-action="Index"
+                           asp-controller="Home" asp-route-category="" asp-route-productPage="-7">
+                            Anasayfa
+                        </a>
+                    </li>
+                    @foreach (string product in Model)
+                    {
+                        <li>
+                            <a class="btn btn-block" asp-action="Index" asp-controller="Home" asp-route-category="@product" asp-route-productPage="-5">
+                                @product
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <vc:cart-summary />
+
+            </div>
+            <!-- Social Button -->
+            <div class="social-info d-flex justify-content-between">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </header>
+        <!-- Header Area End -->
+        <!-- Product Catagories Area Start -->
+        <div class="products-catagories-area clearfix">
+            <div class="amado-pro-catagory clearfix">
+
+                @foreach (string product in Model)
+                {
+                    string resim = product + ".jpg";
+                    <!-- Single Catagory -->
+                    <div class="single-products-catagory clearfix">
+                        <a class="btn btn-block" asp-action="Index" asp-controller="Home" asp-route-category="@product" asp-route-productPage="-5">
+                            <img src="../Anasayfa/images/@resim" alt="">
+                            <!-- Hover Content -->
+                            <div class="hover-content">
+                                <div class="line"></div>
+                                <h4>@product</h4>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!-- Product Catagories Area End -->
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="https://technext.github.io/amado/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="https://technext.github.io/amado/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="https://technext.github.io/amado/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="https://technext.github.io/amado/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="https://technext.github.io/amado/js/active.js"></script>
+
+</body>
+
+</html>

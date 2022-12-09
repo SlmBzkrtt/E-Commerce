@@ -1,0 +1,73 @@
+﻿@inherits LayoutComponentBase
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi Online Admin</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+    <style>
+        .Butonlar {
+            background-color: #fbb710;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+            .Butonlar:hover {
+                transition: 10000s;
+            }
+
+        .Butonlar2 {
+        }
+
+            .Butonlar2:hover {
+                transition: 10000s;
+            }
+    </style>
+</head>
+<body>
+    <div style="background-color:#fbb710;" class="bg text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <span class="navbar-brand ml-2">Hepsi Online Admin</span>
+                </div>
+                <div class="col-2 text-right">
+                    <a class="btn btn-sm btn-secondary Butonlar2" href="/account/logout">Çıkış Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row p-2">
+            <div class="col-3">
+                <NavLink class="btn btn-block Butonlar"
+                         href="/admin/products"
+                         ActiveClass="btn-primary text-white"
+                         Match="NavLinkMatch.Prefix">
+                    Ürünler
+                </NavLink>
+                <NavLink class="btn btn-block Butonlar"
+                         href="/admin/orders"
+                         ActiveClass="btn-primary text-white"
+                         Match="NavLinkMatch.Prefix">
+                    Siparişler
+                </NavLink>
+            </div>
+            <div class="col">
+                @Body
+            </div>
+        </div>
+    </div>
+</body>
+</html>

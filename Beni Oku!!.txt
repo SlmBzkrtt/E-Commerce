@@ -1,0 +1,12 @@
+Hocam merhaba,
+
+172119005 Emrullah Aşgaroğlu ve 172119013 Selim Bozkurt web programlama final ödevinizi yaptık.
+
+Programı ilk kez açtıktan sonra solution'daki appsettings.json içinde aşağıdaki gibi bir connection string bloğu bulunmaktadır. Programın içerisinde sıfırdan açılınca eklenecek ürünler vardır. Data source kısmını sizin bilgisayarınızdaki local adınız ile değiştirip programı çalıştırabilirsiniz. İlk açıldıktan sonra toplamda 6 farklı menü ve 20 farklı ürün bulunacaktır. Tasarımda kullandığımız bazı css'leri, jquery'leri ve ilk eklediğimiz ürünlerin fotoğraflarını internetten çekiyoruz. O yüzden programı çalıştırmadan önce internete bağlı olduğunuzdan emin olun hocam.
+
+------
+ "ConnectionStrings": {
+    "SportsStoreConnection": "data source=DESKTOP-LVDGCA5\\SQLEXPRESS;initial catalog=SportsStoreSEBA;integrated security=True;MultipleActiveResultSets=True;",
+    "IdentityConnection": "data source=DESKTOP-LVDGCA5\\SQLEXPRESS;initial catalog=IdentitySEBA;integrated security=True;MultipleActiveResultSets=True;"
+  }
+------

@@ -1,0 +1,53 @@
+﻿@page
+@model IdentityUsersModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+
+<!DOCTYPE html>
+<html lang="tr">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi Online Admin</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+</head>
+
+<body>
+
+    <h4 style="background-color:#fbb710;" class="bg text-white text-center p-2">Kullanıcı Admin</h4>
+    <table class="table table-sm table-striped table-bordered">
+        <tbody>
+            <tr><th>User</th><td>@Model.AdminUser.UserName</td></tr>
+            <tr><th>Email</th><td>@Model.AdminUser.Email</td></tr>
+            <tr><th>Phone</th><td>@Model.AdminUser.PhoneNumber</td></tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
+@functions{
+    [Authorize]
+    public class IdentityUsersModel : PageModel
+    {
+        private UserManager<IdentityUser> userManager;
+        public IdentityUsersModel(UserManager<IdentityUser> mgr)
+        {
+            userManager = mgr;
+        }
+        public IdentityUser AdminUser { get; set; }
+        public async Task OnGetAsync()
+        {
+            AdminUser = await userManager.FindByNameAsync("Admin");
+        }
+    }
+}

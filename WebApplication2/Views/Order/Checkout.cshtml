@@ -1,0 +1,141 @@
+﻿@model Order
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hepsi Online Satın Al</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+</head>
+
+<body>
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a asp-action="Index"
+                   asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="~/Anasayfa/images/Logo.png" /></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a asp-action="Index"
+                   asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="~/Anasayfa/images/Logo.png" /></a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li>
+                        <a asp-action="Index"
+                           asp-controller="Home" asp-route-category="" asp-route-productPage="-7">Ana Sayfa</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Header Area End -->
+
+        <div class="cart-table-area section-padding-100">
+            <div class="container-fluid">
+                <form asp-action="Checkout" method="post">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <div class="checkout_details_area mt-50 clearfix">
+                                <div class="cart-title">
+                                    <h2>Satın Al</h2>
+                                </div>
+                                @{
+                                    if (ViewBag.Durum == null)
+                                    {
+                                        <h5 style="color:red;">BOŞLUKLARI DOLDURUNUZ.</h5>
+                                    }
+                                }
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Name" placeholder="İsim Soyisim">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Line1" placeholder="Adres 1" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Line2" placeholder="Adres 2" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Line3" placeholder="Adres 3" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="City" placeholder="Sehir" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="State" placeholder="Eyalet" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Zip" placeholder="Posta Kodu" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" asp-for="Country" placeholder="Ülke" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <h5>Seçenekler</h5>
+                                        <input type="checkbox" asp-for="GiftWrap" /> Ürünleri Hediye Paketi Yapma
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="cart-summary">
+                                <h5>Ödenecek Tutar</h5>
+                                <ul class="summary-table">
+                                    <li><span>Teslimat :</span> <span>Ücretsiz</span></li>
+                                    <li><span>Toplam Ücret :</span> <span>@ViewBag.ToplamUcret</span></li>
+                                </ul>
+
+                                <div class="cart-btn mt-100">
+                                    <input class="btn amado-btn w-100" type="submit" value="Siparişi Tamamla" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+    <!-- ##### Newsletter Area End ##### -->
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+</body>
+</html>

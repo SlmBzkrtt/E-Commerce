@@ -1,0 +1,105 @@
+﻿@page "/admin/products"
+@page "/admin"
+@inherits OwningComponentBase<IStoreRepository>
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi Online Admin</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+    <style>
+        .Butonlar {
+            margin-top: 5px;
+        }
+
+            .Butonlar:hover {
+                transition: 10000s;
+            }
+    </style>
+</head>
+
+<body>
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ürün Adı</th>
+                <th>Kategori</th>
+                <th>Fiyat</th>
+                <th>Ana Katagori</th>
+                <th>Image Yolu</th>
+                <td />
+            </tr>
+        </thead>
+        <tbody>
+            @if (ProductData?.Count() > 0)
+            {
+                @foreach (Product p in ProductData)
+                {
+                    <tr>
+                        <td>@p.ProductID</td>
+                        <td>@p.Name</td>
+                        <td>@p.Category</td>
+                        <td>@p.Price.ToString("c")</td>
+                        <td>@p.MainCategory</td>
+                        <td>@p.ImgPath</td>
+                        <td>
+                            <NavLink class="btn btn-info btn-sm Butonlar"
+                                     href="@GetDetailsUrl(p.ProductID)">
+                                Detaylar
+                            </NavLink>
+                            <NavLink class="btn btn-warning btn-sm Butonlar"
+                                     href="@GetEditUrl(p.ProductID)">
+                                Düzenle
+                            </NavLink>
+                            <button class="btn btn-danger btn-sm Butonlar"
+                                    @onclick="@(e => DeleteProduct(p))">
+                                Sil
+                            </button>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Ürün Yok</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+<NavLink class="btn Butonlar" href="/admin/products/create">Yeni Oluştur</NavLink>
+@code {
+    public IStoreRepository Repository => Service;
+    public IEnumerable<Product> ProductData { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        ProductData = await Repository.Products.ToListAsync();
+    }
+    public async Task DeleteProduct(Product p)
+    {
+        Repository.DeleteProduct(p);
+        await UpdateData();
+    }
+    public string GetDetailsUrl(long id) => $"/admin/products/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/products/edit/{id}";
+}

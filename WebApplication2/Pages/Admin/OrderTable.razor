@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi Online Admin</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+</head>
+
+<body>
+
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr><th colspan="5" class="text-center">@TableTitle</th></tr>
+        </thead>
+        <tbody>
+            @if (Orders?.Count() > 0)
+            {
+                @foreach (Order o in Orders)
+                {
+                    <tr>
+                        <td>@o.Name</td>
+                        <td>@o.Zip</td>
+                        <th>Ürün</th>
+                        <th>Adet</th>
+                        <td>
+                            <button style="background-color:#fbb710;" class="btn btn-sm"
+                                    @onclick="@(e => OrderSelected.InvokeAsync(o.OrderID))">
+                                @ButtonLabel
+                            </button>
+                        </td>
+                    </tr>
+                    @foreach (CartLine line in o.Lines)
+                    {
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>@line.Product.Name</td>
+                            <td>@line.Quantity</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <tr><td colspan="5" class="text-center">Ürün Yok</td></tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Orders";
+    [Parameter]
+    public IEnumerable<Order> Orders { get; set; }
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Ship";
+    [Parameter]
+    public EventCallback<int> OrderSelected { get; set; }
+}

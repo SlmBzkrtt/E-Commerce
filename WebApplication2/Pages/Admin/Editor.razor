@@ -1,0 +1,109 @@
+﻿@page "/admin/products/edit/{id:long}"
+@page "/admin/products/create"
+@inherits OwningComponentBase<IStoreRepository>
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi Online Admin</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+    <style>
+        div.validation-message {
+            color: rgb(220, 53, 69);
+            font-weight: 500
+        }
+
+        .Butonlar2 {
+        }
+
+            .Butonlar2:hover {
+                transition: 10000s;
+            }
+    </style>
+</head>
+
+<body>
+    <h3 class="bg-@ThemeColor text-white text-center p-1">Ürünü Düzenle</h3>
+    <EditForm Model="Product" OnValidSubmit="SaveProduct">
+        <DataAnnotationsValidator />
+        @if (Product.ProductID != 0)
+        {
+            <div class="form-group">
+                <label>ID</label>
+                <input class="form-control" disabled value="@Product.ProductID" />
+            </div>
+        }
+        <div class="form-group">
+            <label>Ürün Adı</label>
+            <ValidationMessage For="@(() => Product.Name)" />
+            <InputText class="form-control" @bind-Value="Product.Name" />
+        </div>
+        <div class="form-group">
+            <label>Açıklama</label>
+            <ValidationMessage For="@(() => Product.Description)" />
+            <InputText class="form-control" @bind-Value="Product.Description" />
+        </div>
+        <div class="form-group">
+            <label>Kategori</label>
+            <ValidationMessage For="@(() => Product.Category)" />
+            <InputText class="form-control" @bind-Value="Product.Category" />
+        </div>
+        <div class="form-group">
+            <label>Fiyat</label>
+            <ValidationMessage For="@(() => Product.Price)" />
+            <InputNumber class="form-control" @bind-Value="Product.Price" />
+        </div>
+        <div class="form-group">
+            <label>Ana Kategori</label>
+            <ValidationMessage For="@(() => Product.MainCategory)" />
+            <InputText class="form-control" @bind-Value="Product.MainCategory" />
+        </div>
+        <div class="form-group">
+            <label>Image Yolu</label>
+            <ValidationMessage For="@(() => Product.ImgPath)" />
+            <InputText class="form-control" @bind-Value="Product.ImgPath" />
+        </div>
+        <button type="submit" class="btn btn-@ThemeColor">Kaydet</button>
+        <NavLink class="btn btn-secondary Butonlar2" href="/admin/products">İptal Et</NavLink>
+    </EditForm>
+</body>
+</html>
+@code {
+    public IStoreRepository Repository => Service;
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+    [Parameter]
+    public long Id { get; set; } = 0;
+    public Product Product { get; set; } = new Product();
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Product = Repository.Products.FirstOrDefault(p => p.ProductID == Id);
+        }
+    }
+    public void SaveProduct()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateProduct(Product);
+        }
+        else
+        {
+            Repository.SaveProduct(Product);
+        }
+        NavManager.NavigateTo("/admin/products");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+@model Product
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title  -->
+    <title>Hepsi - Online</title>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+
+</head>
+
+<body>
+    <!-- Search Wrapper Area End -->
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <div style="margin-right:-5px;">
+            <!-- Mobile Nav (max width 767px)-->
+            <div class="mobile-nav">
+                <!-- Navbar Brand -->
+                <div class="amado-navbar-brand">
+                    <a asp-action="Index"
+                       asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="../../Anasayfa/images/Logo.png" alt=""></a>
+                </div>
+                <!-- Navbar Toggler -->
+                <div class="amado-navbar-toggler">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Header Area Start -->
+            <header class="header-area clearfix">
+                <!-- Close Icon -->
+                <div class="nav-close">
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                </div>
+                <!-- Logo -->
+                <div class="logo">
+                    <a asp-action="Index"
+                       asp-controller="Home" asp-route-category="" asp-route-productPage="-7"><img src="../../Anasayfa/images/Logo.png" alt=""></a>
+                </div>
+                <!-- Amado Nav -->
+                <nav class="amado-nav">
+                    <ul>
+                        <vc:navigation-menu />
+                    </ul>
+                </nav>
+
+                <div class="cart-fav-search mb-100">
+                    <vc:cart-summary />
+                </div>
+                <!-- Social Button -->
+                <div class="social-info d-flex justify-content-between">
+                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </header>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-12 col-xl-4" style="padding:5px;">
+            <div class="single-product-wrapper">
+                <!-- Product Image -->
+                <div class="product-img">
+                    <img src="@Model.ImgPath" alt="">
+                    <!-- Hover Thumb -->
+                    <img class="hover-img" title="@Model.Description" src="@Model.ImgPath" alt="">
+                </div>
+
+                <!-- Product Description -->
+                <div class="product-description d-flex align-items-center justify-content-between">
+                    <!-- Product Meta Data -->
+                    <div class="product-meta-data">
+                        <div class="line"></div>
+                        <p class="product-price">@Model.Price.ToString("c")</p>
+                        <a>
+                            <h6>@Model.Name</h6>
+                        </a>
+                    </div>
+                    <!-- Ratings & Cart -->
+                    <div class="ratings-cart text-right">
+                        <div class="ratings">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

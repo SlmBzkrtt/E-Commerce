@@ -1,0 +1,18 @@
+﻿@model Cart
+
+@{
+    int Adet = 0;
+
+    foreach (var item in Model.Lines)
+    {
+        Adet += item.Quantity;
+    }
+}
+
+<div class="">
+    <a class="btn btn-block" asp-page="/Cart"
+       asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+
+        <i class="fa fa-shopping-cart">Sepetim (@Adet)</i>
+    </a>
+</div>

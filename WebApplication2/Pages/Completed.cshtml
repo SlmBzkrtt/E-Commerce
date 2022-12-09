@@ -1,0 +1,35 @@
+﻿@page
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hepsi Online Sipariş Başarılı</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="https://technext.github.io/amado/css/core-style.css">
+    <link rel="stylesheet" href="https://technext.github.io/amado/style.css">
+</head>
+
+<body>
+    <div class="text-center">
+        <h2>Bizimle Alışveriş Yaptığınız İçin Teşekkürler Ederiz.</h2>
+        <p>Sipariş Verdiğiniz İçin Teşekkürler. Siparişiniz -> #@OrderId</p>
+        <p>Elimizden geldiğince ürünlerinizi hızlı bir şekilde size kargolayacağız.</p>
+        <a style="background-color:#fbb710;" class="btn" asp-controller="Home">Ana Sayfaya Geri Dön</a>
+    </div>
+</body>
+</html>
+
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string OrderId { get; set; }
+}

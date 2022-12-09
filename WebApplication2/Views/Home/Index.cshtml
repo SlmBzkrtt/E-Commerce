@@ -1,0 +1,28 @@
+﻿
+@model WebApplication2.Models.ViewModels.ProductsListViewModel
+
+<div class="container-fluid">
+    <div class="row">
+
+        @foreach (var p in Model.Products)
+        {
+            <partial name="ProductSummary" model="p" />
+        }
+
+
+    </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Pagination -->
+                <nav aria-label="navigation">
+                        <ul page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+                            page-class="page-link" page-class-normal="page-item"
+                            page-class-selected="page-item active" page-url-category="@Model.CurrentCategory"
+                            class="pagination justify-content-end mt-50">
+                        </ul>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+

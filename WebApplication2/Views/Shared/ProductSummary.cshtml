@@ -1,0 +1,52 @@
+﻿@model Product
+
+    <head>
+        <script>
+            function SepeteEkle() {
+                alert("Ürün Sepete Eklendi.");
+            };
+        </script>
+    </head>
+
+<!-- Single Product Area -->
+<div class="col-12 col-sm-6 col-md-12 col-xl-4" style="padding:5px;">
+    <div class="single-product-wrapper">
+        <!-- Product Image -->
+        <div class="product-img">
+            <img src="@Model.ImgPath" alt="">
+            <!-- Hover Thumb -->
+            <img class="hover-img" title="@Model.Description" src="@Model.ImgPath" alt="">
+        </div>
+
+        <!-- Product Description -->
+        <div class="product-description d-flex align-items-center justify-content-between">
+            <!-- Product Meta Data -->
+            <div class="product-meta-data">
+                <div class="line"></div>
+                <p class="product-price">@Model.Price.ToString("c")</p>
+                <a asp-action="Detaylar"
+                   asp-controller="Home" asp-route-id="@Model.ProductID">
+                    <h6>@Model.Name</h6>
+                </a>
+            </div>
+            <!-- Ratings & Cart -->
+            <div class="ratings-cart text-right">
+                <div class="ratings">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <div class="cart">
+                    <form id="@Model.ProductID" asp-controller="Home" asp-action="OnPost" method="post">
+                        <input type="hidden" name="productID" value="@Model.ProductID" id="@Model.ProductID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                        <button type="submit" onclick="SepeteEkle()" data-toggle="tooltip" data-placement="left" title="Sepete Ekle"><img src="https://icons.iconarchive.com/icons/3dlb/3d-vol2/32/shopping-cart-icon.png" alt=""></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
